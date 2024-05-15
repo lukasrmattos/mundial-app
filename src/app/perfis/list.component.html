@@ -1,0 +1,26 @@
+<h1>Perfis</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Criar</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 30%">Nome</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let perfil of perfis">
+            <td>{{perfil.nome}}</td>
+            <td style="white-space: nowrap">
+                <button (click)="deletePerfil(perfil.idPerfil)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="perfil.isDeleting">
+                    <span *ngIf="perfil.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!perfil.isDeleting">Excluir</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!perfis">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

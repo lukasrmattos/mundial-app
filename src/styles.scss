@@ -1,0 +1,98 @@
+.registration-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001; /* Higher than overlay */
+    /* Add more styling for the form here */
+  }
+
+  .custom-radio {
+    margin-right: 20px; /* Adjust the space between the radio button groups */
+  }
+  
+  /* Hide the default radio button */
+.custom-radio input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Create a custom radio button */
+  .custom-radio .radio-label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    display: inline-block;
+    color: #7f858a; /* Adjust the color to match your design */
+  }
+  
+  /* Create a custom radio button appearance */
+  .custom-radio .radio-label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #7f858a; /* Adjust the border color to match your design */
+    border-radius: 50%;
+    background-color: #fff;
+  }
+  
+  /* When the radio button is checked, add a dot inside it */
+  .custom-radio input[type="radio"]:checked + .radio-label:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000000; /* Adjust the dot color to match your design */
+    border-radius: 50%;
+  }
+  
+  .loading-state {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loading {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 10px solid #ddd;
+    border-top-color: rgb(0, 174, 255);
+    animation: loading 1s linear infinite;
+  }
+  @keyframes loading {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  
+  .non-clickable {
+    pointer-events: none; /* Makes the element non-clickable */
+  }
+  
+  

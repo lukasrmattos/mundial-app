@@ -1,0 +1,60 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col-5">
+            <label>Nome</label>
+            <input type="text" formControlName="nome" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['nome'].errors }" />
+            <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+                <div *ngIf="f['nome'].errors['required']">É necessário fornecer o nome</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Perfil</label>
+            <select formControlName="idPerfil" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['idPerfil'].errors }">
+                <option value=""></option>
+                <option *ngFor="let perfil of perfis" [value]="perfil.idPerfil">{{perfil.nome}}</option>
+            </select>
+            <div *ngIf="submitted && f['idPerfil'].errors" class="invalid-feedback">
+                <div *ngIf="f['idPerfil'].errors['required']">É necessário fornecer o perfil</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-7">
+            <label>Email</label>
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">É necessário fornecer o email</div>
+                <div *ngIf="f['email'].errors['email']">O endereço de email deve ser válido</div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isAddMode">
+        <h3 class="pt-3">Alterar Senha</h3>
+        <p></p>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Senha</label>
+            <input type="password" formControlName="senha" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['senha'].errors }" />
+            <div *ngIf="submitted && f['senha'].errors" class="invalid-feedback">
+                <div *ngIf="f['senha'].errors['required']">A senha deve ser informada</div>
+                <div *ngIf="f['senha'].errors['minlength']">A senha deve conter no mínimo 6 caracteres</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Confirmar Senha</label>
+            <input type="password" formControlName="confirmSenha" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['confirmSenha'].errors }" />
+            <div *ngIf="submitted && f['confirmSenha'].errors" class="invalid-feedback">
+                <div *ngIf="f['confirmSenha'].errors['required']">Confirme a sua senha</div>
+                <div *ngIf="f['confirmSenha'].errors['mustMatch']">Ambas as senhas devem coincidir</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Salvar
+        </button>
+        <a routerLink="/users" class="btn btn-link">Cancelar</a>
+    </div>
+</form>
